@@ -1,0 +1,125 @@
+.fp-finance-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1000px;
+  margin: 40px auto 0 auto;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+}
+
+@media (max-width: 768px) {
+  .fp-finance-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fp-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fp-card-header {
+  font-size: 14px;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 8px;
+}
+
+/* Ledger Panel */
+.fp-ledger-card {
+  background-color: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.fp-ledger-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.fp-summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.fp-summary-row.total {
+  border-bottom: none;
+  font-weight: 700;
+  font-size: 15px;
+  padding-top: 8px;
+  color: var(--accent);
+}
+
+/* Receipt Sheet */
+.fp-receipt-sheet {
+  background-color: #ffffff;
+  color: #111111;
+  border: 1px solid #e0e0e0;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  font-family: monospace;
+}
+
+[data-theme="dark"] .fp-receipt-sheet {
+  background-color: #fcfcfc;
+  color: #111111;
+}
+
+.fp-receipt-header {
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: 1px dashed #111111;
+  padding-bottom: 12px;
+}
+
+.fp-receipt-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.fp-receipt-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  border-bottom: 1px dashed #111111;
+  padding-bottom: 12px;
+}
+
+.fp-receipt-methods {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 12px;
+  gap: 8px;
+}
+
+.fp-method-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.fp-method-badge.active {
+  background-color: var(--accent-glow);
+  color: var(--accent);
+  border-color: var(--accent);
+}

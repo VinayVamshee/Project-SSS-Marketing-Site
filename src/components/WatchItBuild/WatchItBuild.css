@@ -1,0 +1,54 @@
+.wib-container {
+  max-width: 800px;
+  margin: 40px auto 0 auto;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.wib-paper {
+  background-color: #ffffff;
+  color: #111111;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-sm);
+  padding: 32px;
+  width: 100%;
+  max-width: 500px;
+  min-height: 440px;
+  font-family: 'Times New Roman', Times, serif;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+[data-theme="dark"] .wib-paper {
+  background-color: #fcfcfc;
+  color: #111111;
+}
+
+.wib-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: #10B981;
+  color: white;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+.wib-marks-counter {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 10px;
+}

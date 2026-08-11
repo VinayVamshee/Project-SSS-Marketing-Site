@@ -1,0 +1,213 @@
+.navbar-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 72px;
+  z-index: 100;
+  transition: all var(--transition-normal);
+  border-bottom: 1px solid transparent;
+  padding-inline: clamp(20px, 4vw, 72px);
+  background-color: transparent;
+}
+
+.navbar-wrapper.scrolled {
+  height: 64px;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom-color: var(--glass-border);
+  box-shadow: var(--shadow-md), 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Outfit', var(--font-sans);
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  list-style: none;
+}
+
+@media (max-width: 991px) {
+  .navbar-links {
+    display: none;
+  }
+}
+
+.navbar-link {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+  cursor: pointer;
+}
+
+.navbar-link:hover {
+  color: var(--text);
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.navbar-menu-btn {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.navbar-menu-btn:hover {
+  border-color: var(--text-muted);
+}
+
+@media (max-width: 991px) {
+  .navbar-menu-btn {
+    display: flex;
+  }
+  .navbar-actions .btn-primary {
+    display: none;
+  }
+}
+
+/* Mobile Drawer Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--glass-border);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  padding: 88px 24px 48px 24px;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+.mobile-menu-link {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+  display: block;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mobile-menu-link:active, .mobile-menu-link:hover {
+  background-color: var(--surface-hover);
+  color: var(--accent-color);
+}
+
+.mobile-menu-divider {
+  height: 1px;
+  background-color: var(--border);
+  margin: 16px 0;
+}
+
+.mobile-menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Mega Dropdown styles */
+.navbar-dropdown-wrapper {
+  position: relative;
+}
+
+.navbar-mega-dropdown {
+  position: absolute;
+  top: 100%;
+  left: -120px;
+  width: 580px;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-lg);
+  z-index: 200;
+  margin-top: 10px;
+}
+
+.navbar-dropdown-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.navbar-dropdown-card {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.navbar-dropdown-card:hover {
+  background-color: var(--surface-hover);
+}
+
+.dropdown-card-icon {
+  color: var(--accent-color);
+  margin-top: 2px;
+}
+
+.dropdown-card-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.dropdown-card-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}

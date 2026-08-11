@@ -1,0 +1,216 @@
+.db-preview-container {
+  width: 100%;
+  height: 520px;
+  background-color: var(--surface);
+  display: flex;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+}
+
+/* Sidebar Styling */
+.db-sidebar {
+  width: 180px;
+  background-color: var(--surface-hover);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 12px;
+  gap: 20px;
+  flex-shrink: 0;
+}
+
+.db-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--text);
+  padding-left: 8px;
+}
+
+.db-sidebar-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.db-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.db-sidebar-item:hover, .db-sidebar-item.active {
+  color: var(--text);
+  background-color: var(--surface);
+}
+
+.db-sidebar-item.active {
+  border-left: 2px solid var(--accent);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Main Panel Styling */
+.db-main {
+  flex-grow: 1;
+  background-color: var(--bg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+}
+
+.db-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.db-greeting h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.db-greeting p {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.db-date-badge {
+  font-size: 11px;
+  font-weight: 600;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+/* Live Indicator */
+.db-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  background-color: var(--accent-glow);
+  padding: 3px 8px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+
+.db-live-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  animation: pulse-glow 1.5s infinite;
+}
+
+@keyframes pulse-glow {
+  0% { transform: scale(0.9); opacity: 0.6; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+/* Stats */
+.db-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .db-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.db-stat-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.db-stat-header {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.db-stat-val {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.db-stat-trend {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Grids */
+.db-content-grid {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 16px;
+}
+
+@media (max-width: 991px) {
+  .db-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.db-chart-card, .db-activity-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+}
+
+.db-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.db-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.db-activity-item {
+  font-size: 12px;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 8px;
+}
+
+.db-activity-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}

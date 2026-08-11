@@ -1,0 +1,365 @@
+.ms-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  transition: all var(--transition-normal);
+}
+
+.ms-card:hover {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-lg), 0 4px 20px var(--sss-blue-glow);
+}
+
+.ms-badge-row {
+  display: flex;
+  margin-bottom: 2px;
+}
+
+.ms-badge {
+  font-size: 10px;
+  font-weight: 800;
+  color: var(--accent-color);
+  background-color: var(--accent-glow);
+  padding: 4px 10px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.ms-badge.blue {
+  color: var(--border-focus);
+  background-color: var(--sss-blue-glow);
+}
+
+.ms-badge.orange {
+  color: var(--accent-color);
+  background-color: var(--accent-glow);
+}
+
+.ms-title {
+  font-family: 'Outfit', var(--font-sans);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text);
+  margin: 0;
+}
+
+/* Paper Frame */
+.ms-paper-frame {
+  background-color: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ms-paper-header {
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 10px;
+}
+
+.ms-paper-header h4 {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+  margin: 0;
+}
+
+.ms-paper-header p {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin: 4px 0 0 0;
+}
+
+.ms-questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-question-item {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.ms-q-marks {
+  font-size: 10px;
+  color: var(--accent-color);
+  font-weight: 800;
+  background-color: var(--accent-glow);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.ms-paper-footer {
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* Analytics board */
+.ms-analytics-board {
+  background-color: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ms-ab-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.ms-ab-label {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ms-ab-value {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 2px;
+}
+
+.ms-ab-value .trend-up {
+  font-size: 10px;
+  color: #10B981;
+  font-weight: 800;
+}
+
+.ms-ab-progress-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-ab-track {
+  width: 100%;
+  height: 8px;
+  background-color: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ms-ab-fill {
+  height: 100%;
+  background: var(--sss-blue);
+}
+
+.ms-ab-fill.orange {
+  background: var(--accent);
+}
+
+/* Finance board */
+.ms-finance-board {
+  background-color: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ms-fb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.ms-fb-cell {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ms-fb-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 2px;
+}
+
+.ms-fb-collection {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Student profile */
+.ms-student-profile {
+  background-color: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ms-sp-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.ms-sp-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--accent-glow);
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ms-sp-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-sp-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.ms-sp-row span {
+  color: var(--text-muted);
+}
+
+/* Academics */
+.ms-academics-box {
+  background-color: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ms-ac-level {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.ms-ac-classes {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ms-ac-class-chip {
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.ms-ac-class-chip.active {
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+  background-color: var(--accent-glow);
+}
+
+.ms-ac-subjects {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ms-ac-sub-item {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Exams */
+.ms-exams-box {
+  background-color: var(--surface-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ms-ex-term {
+  font-size: 12px;
+  color: var(--text);
+}
+
+.ms-ex-marks {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-ex-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ms-ex-row span {
+  color: var(--text-muted);
+}
+
+.ms-ex-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  box-shadow: var(--shadow-sm);
+}
