@@ -10,7 +10,7 @@ export default function MetadataBuilder() {
   ]);
 
   const libraryFields = [
-    { id: 'route', label: 'Bus Route', type: 'text', placeholder: 'Route code (e.g. ROUTE-12)' },
+    { id: 'route', label: 'Bus Route No', type: 'text', placeholder: 'Route code (e.g. ROUTE-12)' },
     { id: 'house', label: 'Student House', type: 'text', placeholder: 'e.g. Vidyasagar / Tagore' },
     { id: 'aadhar', label: 'Aadhar Card ID', type: 'text', placeholder: '12-digit number' },
     { id: 'blood', label: 'Blood Group', type: 'text', placeholder: 'e.g. O+, AB-' }
@@ -28,21 +28,21 @@ export default function MetadataBuilder() {
 
   return (
     <div className="mb-builder-wrapper">
-      {/* Col 1: Developer options sidebar */}
+      {/* Col 1: School categories sidebar */}
       <div className="mb-column" style={{ borderRight: '1px solid var(--border)', paddingRight: '20px' }}>
-        <div className="mb-col-title">Developer Registry</div>
+        <div className="mb-col-title">School Operations</div>
         <div className="mb-dev-menu">
-          <div className="mb-dev-item active"><Database size={14} /> Entity Registry</div>
-          <div className="mb-dev-item"><ListPlus size={14} /> Field Registry</div>
-          <div className="mb-dev-item"><FileSpreadsheet size={14} /> Templates</div>
-          <div className="mb-dev-item"><ShieldCheck size={14} /> School Tenants</div>
-          <div className="mb-dev-item"><Group size={14} /> User Accounts</div>
+          <div className="mb-dev-item active"><Database size={14} /> Student Profile</div>
+          <div className="mb-dev-item"><ListPlus size={14} /> Guardian Details</div>
+          <div className="mb-dev-item"><FileSpreadsheet size={14} /> Academic Record</div>
+          <div className="mb-dev-item"><ShieldCheck size={14} /> Fee Ledger Details</div>
+          <div className="mb-dev-item"><Group size={14} /> Staff Operations</div>
         </div>
       </div>
 
       {/* Col 2: Field list library & canvas */}
       <div className="mb-column">
-        <div className="mb-col-title">Custom Fields Library</div>
+        <div className="mb-col-title">Custom Fields Available</div>
         <div className="mb-library-list" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
           {libraryFields.map((field) => {
             const isAdded = activeFields.some(f => f.id === field.id);
@@ -62,7 +62,7 @@ export default function MetadataBuilder() {
         </div>
 
         <div style={{ marginTop: '12px' }}>
-          <div className="mb-col-title" style={{ borderBottom: 'none', paddingBottom: '0' }}>Template Canvas</div>
+          <div className="mb-col-title" style={{ borderBottom: 'none', paddingBottom: '0' }}>Active Fields</div>
           <div className="mb-canvas">
             <AnimatePresence>
               {activeFields.map((field) => (
@@ -89,9 +89,9 @@ export default function MetadataBuilder() {
 
       {/* Col 3: Live Form preview */}
       <div className="mb-column">
-        <div className="mb-col-title">Form Live Preview</div>
+        <div className="mb-col-title">Admissions Form Preview</div>
         <div className="mb-form-preview">
-          <div className="mb-form-header">Dynamic Admissions Schema</div>
+          <div className="mb-form-header">Customized School Form</div>
           {activeFields.map((field) => (
             <div key={field.id} className="mb-form-field">
               <span className="mb-field-label">{field.label}</span>

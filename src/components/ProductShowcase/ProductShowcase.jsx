@@ -138,37 +138,37 @@ function MockConfiguration() {
 const SHOWCASE_ITEMS = [
   {
     id: 'students',
-    label: 'Students Roster',
-    title: 'Admissions & Roster Directory',
-    desc: 'Register and search academic student details, mapping sections and roll sequences immediately.',
+    label: 'Student Directory',
+    title: 'Admissions & Student Roster',
+    desc: 'Register and search student details, manage class rosters, sections, and student information quickly.',
     render: () => <MockStudentsRoster />
   },
   {
     id: 'analytics',
-    label: 'BI Analytics',
-    title: 'Academic Business Intelligence',
-    desc: 'Track overall class marks growth curves, subject averages comparisons, and risk ledger assessments.',
+    label: 'Academic Analytics',
+    title: 'Academic Performance Insights',
+    desc: 'Track overall class marks, monitor average progress curves, compare subject performance, and identify students requiring extra attention.',
     render: () => <MockBIAnalytics />
   },
   {
     id: 'question-papers',
     label: 'Question Papers',
-    title: 'Question Paper Engine',
-    desc: 'Step-by-step examination paper formatting utilizing custom school templates.',
+    title: 'Question Paper Builder',
+    desc: 'Compile balanced, syllabus-aligned examination papers using pre-defined school layouts in minutes.',
     render: () => <MockQuestionPapers />
   },
   {
     id: 'student-details',
     label: 'Student Details',
-    title: 'Student 360° Profile details',
-    desc: 'Centralized record displaying parent information, attendance metrics, results, and fee balances.',
+    title: 'Student 360° Profile',
+    desc: 'A complete, connected record displaying parent contact information, daily attendance metrics, exam results, and fee ledgers on a single screen.',
     render: () => <MockStudentDetails />
   },
   {
     id: 'configuration',
-    label: 'Configuration',
-    title: 'Developer Entity Registry',
-    desc: 'Metadata configurator enabling custom fields (e.g. Bus Route or House) to be mapped instantly.',
+    label: 'Flexible Forms',
+    title: 'Custom School Forms & Fields',
+    desc: 'Customize student profiles and admission forms by adding the specific details your school tracks (like bus routes or house teams) without code changes.',
     render: () => <MockConfiguration />
   }
 ];

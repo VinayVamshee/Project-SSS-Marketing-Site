@@ -15,7 +15,7 @@ export default function WatchItBuild() {
   return (
     <div className="wib-container">
       <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-        Cinematic Compilation Engine Demo
+        Live Question Paper Compilation
       </div>
 
       <div className="wib-paper">

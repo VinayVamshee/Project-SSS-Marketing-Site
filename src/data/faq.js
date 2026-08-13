@@ -1,50 +1,42 @@
 export const FAQ_ITEMS = [
   {
     question: 'What is SSS?',
-    answer: 'SSS (School Scholastic System) is a configurable, multi-tenant School ERP and Academic Intelligence platform designed to connect all student, academic, assessment, and financial workflows into one operating system.'
+    answer: 'SSS (School Scholastic System) is a flexible, unified school management system that connects student profiles, daily attendance, examinations, question papers, fees, and reports in one place.'
   },
   {
     question: 'Who is SSS designed for?',
-    answer: 'It is built specifically for school administrators, academic heads, teachers, accountants, and trust groups managing single or multiple campuses.'
+    answer: 'It is built specifically for school administrators, principals, academic heads, teachers, and school office staff to help streamline daily school workflows.'
   },
   {
     question: 'Does SSS support student management?',
-    answer: 'Yes, SSS provides complete Student 360° views linking registration details, academic history, term grades, attendance averages, and fee ledgers on a single screen.'
+    answer: 'Yes. SSS provides a complete Student 360° view linking registration details, academic history, term grades, attendance averages, and fee balances on a single screen.'
   },
   {
-    question: 'Can schools manage academic years and classes?',
-    answer: 'Absolutely. You can define your institutional academic structures (Academic Years, Classes, Section maps, Syllabus Chapters) once and reuse them across all platform modules.'
+    question: 'Can schools manage academic terms and classes?',
+    answer: 'Yes. You can define your school structure including academic years, classes, and section rosters, which then map automatically to examinations, attendance, and fee tracking.'
   },
   {
-    question: 'What is the Question Paper Engine?',
-    answer: 'The Question Paper Engine V2 lets teachers maintain a structured syllabus question bank (divided by subject, chapter, type, and mark allocations) and compile balanced print-ready examination papers immediately using template layouts.'
+    question: 'What is the Question Paper Builder?',
+    answer: 'The Question Paper Builder allows teachers to maintain a school question bank (sorted by subject and chapter) and compile balanced, print-ready exam papers using school templates in minutes.'
   },
   {
-    question: 'What is Assessment Analytics?',
-    answer: 'Assessment Analytics goes beyond standard grade lists, providing class highest-to-average performance comparisons, subject breakdown analytics, and exam-wise overall progress trends.'
+    question: 'What is Academic Analytics?',
+    answer: 'Academic Analytics provides clear, visual charts of class averages, subject performance comparisons, and examination trends to help principals and teachers monitor academic progress.'
   },
   {
-    question: 'Can I compare student performance?',
-    answer: 'Yes. The Student Analytics module includes subject-wise progress curves and radar charts comparing individual scores against class averages.'
+    question: 'Can we configure custom student details?',
+    answer: 'Yes. SSS allows you to add custom student information fields (such as bus routes, school houses, or emergency details) that automatically update on forms and student profiles.'
   },
   {
     question: 'Can SSS track fees and payments?',
-    answer: 'Yes, SSS includes class-wise fee schedules, payment records tracking, balance logging, and receipt compilation for UPI, cash, and offline card payments.'
+    answer: 'Yes. SSS includes fee structure setup, payment logs, balance tracking, concessions, and instant receipt generation for all fee collections.'
   },
   {
-    question: 'Can schools configure fields?',
-    answer: 'Yes, SSS features a metadata-driven core allowing admins to register new data attributes (e.g. Bus Route or House) in the Entity Registry, immediately updating student cards and admissions forms.'
-  },
-  {
-    question: 'Does SSS support custom workflows?',
-    answer: 'Yes, advanced plans support customized workflow configurations and schema templates to match the specific governance guidelines of your institution.'
-  },
-  {
-    question: 'Does SSS require a backend?',
-    answer: 'The actual SSS software has a powerful backend database and server architecture. This marketing website, however, is a frontend demonstration of those features using local simulations.'
+    question: 'Does SSS require complex setup?',
+    answer: 'No. SSS runs directly in your web browser with no local server installation required. This website serves as a live, interactive preview of the application interfaces.'
   },
   {
     question: 'How does pricing work?',
-    answer: 'Pricing is offered in transparent tiers (Basic, Silver, Gold) based on the number of active students and required capabilities, with savings available for quarterly or annual billing cycles.'
+    answer: 'Pricing is offered in transparent plans based on student enrollment capacity, with flexible monthly, quarterly, and annual billing cycles.'
   }
 ];

@@ -17,6 +17,7 @@ import MetadataBuilder from '../components/MetadataBuilder/MetadataBuilder';
 import QuestionPaperPreview from '../components/QuestionPaperPreview/QuestionPaperPreview';
 import AcademicFlow from '../components/AcademicFlow/AcademicFlow';
 import AnalyticsPreview from '../components/AnalyticsPreview/AnalyticsPreview';
+import AttendancePreview from '../components/AttendancePreview/AttendancePreview';
 import FinancePreview from '../components/FinancePreview/FinancePreview';
 import ProductShowcase from '../components/ProductShowcase/ProductShowcase';
 import StickyProductStory from '../components/StickyProductStory/StickyProductStory';
@@ -465,6 +466,103 @@ export default function Home() {
         </div>
       </section>
 
+      {/* COMPLETE SCHOOL CAPABILITIES SECTION */}
+      <section className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
+        <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 50px auto' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>COMPLETE CAPABILITIES</span>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Everything Your School Needs. In One Place.</h2>
+          <p className="body-text">
+            Connect the everyday operations of your school through one unified platform.
+          </p>
+        </div>
+
+        <div className="why-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>STUDENTS</h3>
+            <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+              <li>Register students & manage rosters</li>
+              <li>Maintain complete student 360° profiles</li>
+              <li>Manage admissions & class enrollments</li>
+              <li>Organize classes & section rosters</li>
+              <li>Handle promotions & academic progressions</li>
+              <li>Generate print-ready student ID cards</li>
+              <li>Export student records & rosters</li>
+            </ul>
+          </div>
+
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ATTENDANCE</h3>
+            <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+              <li>Record daily student attendance logs</li>
+              <li>Mark entire classes quickly in seconds</li>
+              <li>Track present, absent, leave, & late notes</li>
+              <li>View monthly attendance histories</li>
+              <li>Identify students with low attendance</li>
+              <li>Generate daily and monthly reports</li>
+            </ul>
+          </div>
+
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ACADEMICS</h3>
+            <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+              <li>Map academic structures & terms</li>
+              <li>Assign teachers to subjects & classes</li>
+              <li>Configure curriculum & chapter milestones</li>
+              <li>Track real-time syllabus progress</li>
+              <li>Schedule examinations and tests</li>
+              <li>Record term marks & grade sheets</li>
+              <li>Generate professional report cards</li>
+            </ul>
+          </div>
+
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>QUESTION PAPERS</h3>
+            <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+              <li>Build balanced school question papers</li>
+              <li>Maintain central reusable question banks</li>
+              <li>Add mathematical formulas & symbols</li>
+              <li>Design exam sections with mark tallies</li>
+              <li>Preview papers instantly before printing</li>
+              <li>Export print-ready PDF exam papers</li>
+            </ul>
+          </div>
+
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ANALYTICS</h3>
+            <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+              <li>Analyze student academic progress</li>
+              <li>Compare performance across classes</li>
+              <li>Assess subject-wise average grades</li>
+              <li>Identify top performers & pupils needing support</li>
+              <li>Track term-over-term growth trends</li>
+            </ul>
+          </div>
+
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>FEES</h3>
+            <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+              <li>Configure fee schedules & structures</li>
+              <li>Log payments for cash, UPI, & cards</li>
+              <li>Maintain detailed student fee ledgers</li>
+              <li>Record academic concessions & discounts</li>
+              <li>Track pending balances & dues lists</li>
+              <li>Generate instant printed receipts</li>
+            </ul>
+          </div>
+
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>CALENDAR & REPORTS</h3>
+            <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
+              <li>Manage school working days & holidays</li>
+              <li>Define calendar events & examinations</li>
+              <li>Filter, preview and export report records</li>
+              <li>Export clean files directly to Excel and PDF</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+
       {/* Sticky product story section */}
       <section className="container" style={{ paddingTop: 0, paddingBottom: 0 }}>
         <StickyProductStory />
@@ -544,14 +642,49 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 9B. ATTENDANCE SECTION */}
+      <section id="attendance" className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
+        <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>04B / ATTENDANCE</span>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Attendance Without the Paper Register.</h2>
+          <p className="body-text">
+            Mark daily attendance, log present/absent metrics instantly, and review student attendance averages linked directly with the school calendar working days and holidays.
+          </p>
+          <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <div className="floating-tour-dot" />
+            <span>● PLAYABLE DEMO — Click status letters (P, A, L, H, LV) to toggle class register records</span>
+          </div>
+        </div>
+        <div className="hide-on-mobile">
+          <AttendancePreview />
+        </div>
+        <div className="show-on-mobile-only" style={{ textAlign: 'center', padding: '20px', background: 'var(--surface-hover)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+          <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Today's Attendance: 92%</strong>
+          <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Class 8-A register synced with school calendar metrics.</span>
+        </div>
+      </section>
+
+
       {/* 10 & 11. QUESTION PAPER ENGINE */}
       <section id="question-papers" className="container">
-        <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>05 / QUESTION PAPERS</span>
-          <h2 className="section-title" style={{ marginTop: 8 }}>From question bank to finished paper.</h2>
-          <p className="body-text">
-            Build structured examination papers from your question bank, filter exactly what you need, arrange questions and preview the final paper before downloading.
+          <h2 className="section-title" style={{ marginTop: 8 }}>Create Better Question Papers. In Minutes.</h2>
+          <h4 style={{ fontSize: '18px', color: 'var(--accent)', marginTop: 8, fontWeight: 700 }}>From question bank to print-ready paper — without starting from scratch.</h4>
+          <p className="body-text" style={{ marginTop: 12 }}>
+            Maintain a structured question bank, select existing questions, arrange custom sections, allocate mark weightages, insert exam guidelines, and export clean print-ready PDFs instantly.
           </p>
+          
+          {/* Animated/visual timeline steps */}
+          <div className="hide-on-mobile" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 10, margin: '24px 0 12px 0', fontSize: '10px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+            {['Question Bank', 'Select Questions', 'Arrange Sections', 'Set Marks', 'Add Instructions', 'Format', 'Preview', 'Print / PDF'].map((step, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                <span style={{ padding: '6px 12px', background: 'var(--surface-hover)', border: '1px solid var(--border)', borderRadius: '20px', color: 'var(--text-muted)' }}>{step}</span>
+                {idx < 7 && <span style={{ color: 'var(--accent)' }}>→</span>}
+              </div>
+            ))}
+          </div>
+
           <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <div className="floating-tour-dot" />
             <span>● PLAYABLE DEMO — Pick questions and watch paper compile live in the template canvas</span>
@@ -576,15 +709,16 @@ export default function Home() {
 
       {/* 13. ASSESSMENT INTELLIGENCE */}
       <section id="analytics" className="container">
-        <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
-          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>06 / ASSESSMENT INTELLIGENCE</span>
-          <h2 className="section-title" style={{ marginTop: 8 }}>Marks are data. SSS turns them into insight.</h2>
-          <p className="body-text">
-            Go beyond marksheets. Understand how students perform across subjects, assessments and academic periods.
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>06 / ACADEMIC ANALYTICS</span>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Turn Student Records Into Insights.</h2>
+          <h4 style={{ fontSize: '18px', color: 'var(--accent)', marginTop: 8, fontWeight: 700 }}>Don't just store student information. Understand it.</h4>
+          <p className="body-text" style={{ marginTop: 12 }}>
+            Go beyond standard marksheets. Turn raw grades and test scores into clear visual trends showing subject averages, top performers, and students requiring attention.
           </p>
           <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <div className="floating-tour-dot" />
-            <span>● PLAYABLE DEMO — Switch dashboard tabs and hover over points to inspect performance BI metrics</span>
+            <span>● PLAYABLE DEMO — Switch dashboard tabs and hover over points to inspect performance averages</span>
           </div>
         </div>
         <div className="hide-on-mobile">
@@ -692,20 +826,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 20. CONFIGURATION / METADATA */}
+      {/* 20. BUILT AROUND YOUR SCHOOL */}
       <section id="configuration" className="container">
-        <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>09 / CUSTOMIZATION</span>
-          <h2 className="section-title" style={{ marginTop: 8 }}>Your school is different. SSS adapts.</h2>
-          <p className="body-text">
-            Configure the custom fields and schema templates your school needs without code modifications.
+          <h2 className="section-title" style={{ marginTop: 8 }}>Built Around Your School</h2>
+          <h4 style={{ fontSize: '18px', color: 'var(--accent)', marginTop: 8, fontWeight: 700 }}>Your school already has a way of working. SSS adapts to it.</h4>
+          <p className="body-text" style={{ marginTop: 12 }}>
+            Every school manages information differently. Different forms, different reporting requirements, different workflows and different ways of organizing student records. SSS is designed to be flexible, so your school doesn't have to completely change the way it works just to use the software.
           </p>
-          <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-            <div className="floating-tour-dot" />
-            <span>● PLAYABLE DEMO — Input custom field label and check form schema output update</span>
+        </div>
+
+        {/* Visual Customization Cards Grid */}
+        <div className="why-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', marginBottom: '48px' }}>
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h4 style={{ fontWeight: 800, fontSize: '15px', color: 'var(--text)', marginBottom: 8 }}>1. Flexible Information</h4>
+            <p style={{ fontSize: '12px', color: 'var(--text-muted)', lineHeight: 1.5 }}>Keep the student and school information that actually matters to your institution.</p>
+          </div>
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h4 style={{ fontWeight: 800, fontSize: '15px', color: 'var(--text)', marginBottom: 8 }}>2. Custom Forms</h4>
+            <p style={{ fontSize: '12px', color: 'var(--text-muted)', lineHeight: 1.5 }}>Adapt forms and fields around your school's requirements.</p>
+          </div>
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h4 style={{ fontWeight: 800, fontSize: '15px', color: 'var(--text)', marginBottom: 8 }}>3. Your Templates</h4>
+            <p style={{ fontSize: '12px', color: 'var(--text-muted)', lineHeight: 1.5 }}>Use consistent templates for documents, question papers, reports and school records.</p>
+          </div>
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <h4 style={{ fontWeight: 800, fontSize: '15px', color: 'var(--text)', marginBottom: 8 }}>4. Evolves With You</h4>
+            <p style={{ fontSize: '12px', color: 'var(--text-muted)', lineHeight: 1.5 }}>When your requirements change, SSS can be adapted without rebuilding the entire system.</p>
           </div>
         </div>
+
         <div className="hide-on-mobile">
+          <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginBottom: 20, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <div className="floating-tour-dot" />
+            <span>● PLAYABLE DEMO — Click custom fields below to watch them slide dynamically into your school's form template</span>
+          </div>
           <MetadataBuilder />
         </div>
       </section>
@@ -781,35 +937,47 @@ export default function Home() {
       {/* 22. WHY SSS */}
       <section id="why" className="container">
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
-          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>11 / PHILOSOPHY</span>
-          <h2 className="section-title" style={{ marginTop: 8 }}>Not just another school ERP.</h2>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>11 / OUTCOMES</span>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Why Schools Use SSS</h2>
           <p className="body-text">
-            Modern software built around the challenges educational trusts and schools encounter daily.
+            Streamline your administration, connect your departments, and focus on what matters most—education.
           </p>
         </div>
-        <div className="why-cards-grid" style={{ marginTop: 40 }}>
-          <div className="use-case-card">
-            <span className="pillar-num" style={{ fontSize: '20px', fontWeight: 800 }}>CONNECTED</span>
-            <p className="use-case-desc" style={{ marginTop: '8px' }}>
-              Bring student, academic, assessment and financial workflows together in a single connected platform.
+        <div className="why-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', marginTop: 40 }}>
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <span style={{ fontSize: '18px', fontWeight: 800, color: 'var(--accent)', display: 'block', marginBottom: '8px' }}>Less Paperwork</span>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+              Reduce repetitive manual record keeping and free up staff hours.
             </p>
           </div>
-          <div className="use-case-card">
-            <span className="pillar-num" style={{ fontSize: '20px', fontWeight: 800 }}>CONFIGURABLE</span>
-            <p className="use-case-desc" style={{ marginTop: '8px' }}>
-              Adapt the system around your school's unique fields and admissions structures.
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <span style={{ fontSize: '18px', fontWeight: 800, color: 'var(--accent)', display: 'block', marginBottom: '8px' }}>Everything in One Place</span>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+              Keep student profiles, academics, attendance, examinations, and fee information connected.
             </p>
           </div>
-          <div className="use-case-card">
-            <span className="pillar-num" style={{ fontSize: '20px', fontWeight: 800 }}>ASSESSMENT-FIRST</span>
-            <p className="use-case-desc" style={{ marginTop: '8px' }}>
-              Understand student performance and class average trends beyond a simple marksheet.
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <span style={{ fontSize: '18px', fontWeight: 800, color: 'var(--accent)', display: 'block', marginBottom: '8px' }}>Faster Administration</span>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+              Complete routine school operations without jumping between disconnected tools.
             </p>
           </div>
-          <div className="use-case-card">
-            <span className="pillar-num" style={{ fontSize: '20px', fontWeight: 800 }}>TRANSPARENT</span>
-            <p className="use-case-desc" style={{ marginTop: '8px' }}>
-              Clear features index plans, predictable pricing setups, and dedicated onboarding support.
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <span style={{ fontSize: '18px', fontWeight: 800, color: 'var(--accent)', display: 'block', marginBottom: '8px' }}>Better Visibility</span>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+              Turn school records into useful reports and real academic insights.
+            </p>
+          </div>
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <span style={{ fontSize: '18px', fontWeight: 800, color: 'var(--accent)', display: 'block', marginBottom: '8px' }}>Flexible for Your School</span>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+              Configure student details, rosters, and forms around your school's unique requirements.
+            </p>
+          </div>
+          <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
+            <span style={{ fontSize: '18px', fontWeight: 800, color: 'var(--accent)', display: 'block', marginBottom: '8px' }}>Ready When You Need It</span>
+            <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.5 }}>
+              Generate reports, fee receipts, question papers, and other documents instantly.
             </p>
           </div>
         </div>
@@ -840,9 +1008,9 @@ export default function Home() {
       <section id="pricing" className="container">
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>13 / PLANS</span>
-          <h2 className="section-title" style={{ marginTop: 8 }}>Simple plans. Clear pricing. No surprises.</h2>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Choose the plan that fits your school.</h2>
           <p className="body-text">
-            Choose the level of SSS that fits your institution. Upgrade as your school grows.
+            Simple plans. Clear pricing. No hidden fees. Upgrade as your student enrollment grows.
           </p>
         </div>
 
@@ -854,7 +1022,7 @@ export default function Home() {
               className={`pricing-tab-btn ${pricingCycle === cycle ? 'active' : ''}`}
               onClick={() => setPricingCycle(cycle)}
             >
-              {cycle.toUpperCase()} {cycle === 'annual' && '(Save ~15%)'}
+              {cycle.toUpperCase()} {cycle === 'annual' && '(Best Value - Save ~15%)'}
             </button>
           ))}
         </div>
@@ -868,18 +1036,18 @@ export default function Home() {
                 {plan.isPopular && <div className="pricing-popular-badge">Most Popular</div>}
                 
                 <div className="pricing-card-header">
-                  <div className="pricing-plan-title">{planKey}</div>
-                  <div style={{ fontSize: '12px', color: 'var(--text-muted)' }}>{plan.target}</div>
-                  <div className="pricing-price-box">
-                    <span className="pricing-plan-price">{getPriceText(planKey)}</span>
+                  <div className="pricing-plan-title" style={{ fontSize: '20px', fontWeight: 800 }}>{plan.title}</div>
+                  <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: 6, lineHeight: 1.4, minHeight: '36px' }}>{plan.subtitle}</div>
+                  <div className="pricing-price-box" style={{ marginTop: 14 }}>
+                    <span className="pricing-plan-price" style={{ fontSize: '28px', fontWeight: 900 }}>{getPriceText(planKey)}</span>
                   </div>
-                  <div style={{ fontSize: '11px', color: 'var(--accent)', fontWeight: 600, marginTop: 4 }}>
+                  <div style={{ fontSize: '11px', color: 'var(--accent)', fontWeight: 700, marginTop: 4, minHeight: '16px' }}>
                     {getPriceSub(planKey)}
                   </div>
-                  <div style={{ fontSize: '12px', marginTop: 10, fontWeight: 600 }}>{plan.limits}</div>
+                  <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--text-muted)', marginTop: 12, fontWeight: 700 }}>{plan.limits}</div>
                 </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontSize: '12px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10, fontSize: '12px', margin: '20px 0' }}>
                   {plan.features.map((f, i) => (
                     <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
                       <CheckSquare size={14} style={{ color: 'var(--accent)' }} />
@@ -903,9 +1071,9 @@ export default function Home() {
       <section id="comparison" className="container">
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>14 / COMPARISON</span>
-          <h2 className="section-title" style={{ marginTop: 8 }}>Compare plan capabilities</h2>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Compare Plan Capabilities</h2>
           <p className="body-text">
-            See a detailed module breakdown matrix.
+            See a detailed, department-wise module breakdown.
           </p>
         </div>
         <div className="comparison-table-wrapper">
@@ -913,21 +1081,25 @@ export default function Home() {
             <thead>
               <tr>
                 <th>Module / Capability</th>
-                <th>Basic</th>
-                <th>Silver</th>
-                <th>Gold</th>
+                <th>Essentials (Basic)</th>
+                <th>Academic (Silver)</th>
+                <th>Full School (Gold)</th>
               </tr>
             </thead>
             <tbody>
               {[
-                { name: 'Student Profiles Management', b: '✓', s: '✓', g: '✓' },
-                { name: 'Syllabus Chapter Config', b: '—', s: '✓', g: '✓' },
-                { name: 'Question Bank Registry', b: '—', s: '✓', g: '✓' },
-                { name: 'Question Paper Engine V2', b: '—', s: '✓', g: '✓' },
-                { name: 'Assessment Analytics Reports', b: '—', s: '✓', g: '✓' },
-                { name: 'Fee Ledger Tracking', b: '✓', s: '✓', g: '✓' },
-                { name: 'Metadata Custom Fields', b: '—', s: '—', g: '✓' },
-                { name: 'Multi-Tenant Setup rules', b: '—', s: '—', g: '✓' }
+                { name: 'Student Management & Profiles', b: '✓', s: '✓', g: '✓' },
+                { name: 'Attendance Registers & Alerts', b: '—', s: '✓', g: '✓' },
+                { name: 'Academic Setup & Promotions', b: '✓', s: '✓', g: '✓' },
+                { name: 'Question Paper Builder', b: '—', s: '✓', g: '✓' },
+                { name: 'Examinations Scheduling', b: '—', s: '✓', g: '✓' },
+                { name: 'Results & Report Cards', b: 'Basic', s: '✓', g: '✓' },
+                { name: 'Academic Performance Analytics', b: 'Basic', s: '✓', g: 'Advanced' },
+                { name: 'Fee Management & Receipts', b: 'Basic', s: '✓', g: '✓' },
+                { name: 'School Calendar & Events', b: '✓', s: '✓', g: '✓' },
+                { name: 'School Reports & Exports', b: 'Basic', s: 'Advanced', g: 'Advanced' },
+                { name: 'Custom Fields & Forms', b: '—', s: '—', g: '✓' },
+                { name: 'Customer Support', b: 'Standard', s: 'Priority Email', g: 'Priority Phone & Email' }
               ].map((row, idx) => (
                 <tr key={idx}>
                   <td style={{ fontWeight: 600 }}>{row.name}</td>
@@ -1134,7 +1306,7 @@ export default function Home() {
                 SSS
               </span>
               <p style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: '1.4', marginTop: 8 }}>
-                Run your school around one connected system. Configurable, multi-tenant academic operations suite.
+                Run your school around one connected system. Flexible academic operations suite.
               </p>
             </div>
             

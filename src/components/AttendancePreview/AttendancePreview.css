@@ -1,0 +1,159 @@
+.att-container {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  background-color: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  padding: 24px;
+}
+
+.att-register-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+
+.att-register-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.att-student-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-hover);
+  transition: border-color var(--transition-fast);
+}
+
+.att-student-row:hover {
+  border-color: var(--border-focus);
+}
+
+.att-student-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.att-student-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--sss-blue-glow);
+  color: var(--border-focus);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 11px;
+}
+
+.att-student-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.att-status-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.att-status-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+/* Color states */
+.att-status-btn.present:hover, .att-status-btn.present.active {
+  background-color: rgba(16, 185, 129, 0.15);
+  border-color: #10B981;
+  color: #10B981;
+}
+
+.att-status-btn.absent:hover, .att-status-btn.absent.active {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: #EF4444;
+  color: #EF4444;
+}
+
+.att-status-btn.late:hover, .att-status-btn.late.active {
+  background-color: rgba(245, 158, 11, 0.15);
+  border-color: #F59E0B;
+  color: #F59E0B;
+}
+
+.att-status-btn.half-day:hover, .att-status-btn.half-day.active {
+  background-color: rgba(59, 130, 246, 0.15);
+  border-color: #3B82F6;
+  color: #3B82F6;
+}
+
+.att-status-btn.leave:hover, .att-status-btn.leave.active {
+  background-color: rgba(168, 85, 247, 0.15);
+  border-color: #A855F7;
+  color: #A855F7;
+}
+
+.att-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+}
+
+.att-metric-card {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-hover);
+}
+
+.att-metric-card.alert {
+  border-color: rgba(239, 68, 68, 0.2);
+  background-color: rgba(239, 68, 68, 0.02);
+}
+
+.att-metric-label {
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+}
+
+.att-metric-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  display: block;
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .att-summary-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
