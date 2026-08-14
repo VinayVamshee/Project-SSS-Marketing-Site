@@ -6,6 +6,7 @@ import {
   TrendingUp, Settings, ChevronDown, ShieldCheck, ArrowRight
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 // Components & Simulations
 import Navbar from '../components/Navbar/Navbar';
@@ -18,6 +19,8 @@ import QuestionPaperPreview from '../components/QuestionPaperPreview/QuestionPap
 import AcademicFlow from '../components/AcademicFlow/AcademicFlow';
 import AnalyticsPreview from '../components/AnalyticsPreview/AnalyticsPreview';
 import AttendancePreview from '../components/AttendancePreview/AttendancePreview';
+import SchoolCalendarPreview from '../components/SchoolCalendarPreview/SchoolCalendarPreview';
+import ReportsPreview from '../components/ReportsPreview/ReportsPreview';
 import FinancePreview from '../components/FinancePreview/FinancePreview';
 import ProductShowcase from '../components/ProductShowcase/ProductShowcase';
 import StickyProductStory from '../components/StickyProductStory/StickyProductStory';
@@ -190,6 +193,52 @@ export default function Home() {
     message: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  // Form ref for EmailJS sendForm
+  const formRef = useRef();
+
+  // EmailJS credentials
+  const EMAILJS_SERVICE_ID = 'service_poxj9kb';
+  const EMAILJS_TEMPLATE_ID = 'template_jvwl9vb';
+  const EMAILJS_PUBLIC_KEY = 'MMiGPMm9m6ZYRwisE';
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+
+    try {
+      if (formRef.current) {
+        await emailjs.sendForm(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          formRef.current,
+          EMAILJS_PUBLIC_KEY
+        );
+      } else {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            school_name: demoForm.schoolName,
+            contact_person: demoForm.contactPerson,
+            phone: demoForm.phone,
+            email: demoForm.email,
+            students_count: demoForm.studentsCount,
+            interested_plan: demoForm.interestedPlan,
+            message: demoForm.message
+          },
+          EMAILJS_PUBLIC_KEY
+        );
+      }
+      setFormSubmitted(true);
+    } catch (err) {
+      console.error('EmailJS send error:', err);
+      setFormSubmitted(true);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   // Scroll Progress calculation
   useEffect(() => {
@@ -261,11 +310,6 @@ export default function Home() {
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-  };
 
   const toggleFaq = (index) => {
     setExpandedFaq(prev => (prev === index ? null : index));
@@ -423,7 +467,7 @@ export default function Home() {
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>01 / THE PROBLEM</span>
           <h2 className="section-title" style={{ marginTop: 8 }}>School operations shouldn't live in disconnected systems.</h2>
           <p className="body-text">
-            Student records in one place. Marks in another. Question papers somewhere else. Spreadsheets for everything in between.
+            Student records, attendance registers, spreadsheets, fee ledgers and exam documents—connected into one system.
           </p>
         </div>
         <ProblemVisual />
@@ -435,20 +479,19 @@ export default function Home() {
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>02 / THE ECOSYSTEM</span>
           <h2 className="section-title" style={{ marginTop: 8 }}>One school. Many workflows. One system.</h2>
           <p className="body-text">
-            SSS unites all separate campus processes into a single unified academic pipeline.
+            SSS connects every stage of the academic journey into a unified platform.
           </p>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '40px 0' }}>
           {[
-            'Admissions & Enrolments', 'Student Profile mapping', 'Academic Syllabus definition', 
-            'Class Schedules', 'Subject Registries', 'Chapters & Chapters Tracker', 
-            'Assessment parameters', 'Question Paper builders', 'Examination schedules', 
-            'Marks grading', 'Report Card compiling', 'Finance & Fee ledgers'
+            'Admissions & Enrolments', 'Student Profiles', 'Academic Structure', 
+            'Subjects & Chapters', 'Assessments', 'Question Papers', 
+            'Examinations', 'Results', 'Analytics', 'Finance & Fee Ledgers', 'Reports'
           ].map((item, idx) => (
             <React.Fragment key={idx}>
               <div 
                 style={{ 
-                  padding: '12px 24px', 
+                  padding: '10px 20px', 
                   backgroundColor: 'var(--surface)', 
                   border: '1px solid var(--border)', 
                   borderRadius: 'var(--radius-sm)',
@@ -458,7 +501,7 @@ export default function Home() {
               >
                 {item}
               </div>
-              {idx < 11 && (
+              {idx < 10 && (
                 <div className="workflow-connector-line active" />
               )}
             </React.Fragment>
@@ -472,91 +515,71 @@ export default function Home() {
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>COMPLETE CAPABILITIES</span>
           <h2 className="section-title" style={{ marginTop: 8 }}>Everything Your School Needs. In One Place.</h2>
           <p className="body-text">
-            Connect the everyday operations of your school through one unified platform.
+            A quick overview of what SSS provides across all school departments.
           </p>
         </div>
 
         <div className="why-cards-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
           <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>STUDENTS</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>STUDENTS</h3>
             <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
-              <li>Register students & manage rosters</li>
-              <li>Maintain complete student 360° profiles</li>
-              <li>Manage admissions & class enrollments</li>
-              <li>Organize classes & section rosters</li>
-              <li>Handle promotions & academic progressions</li>
-              <li>Generate print-ready student ID cards</li>
-              <li>Export student records & rosters</li>
+              <li>Student registration & profiles</li>
+              <li>Academic enrolments & class rosters</li>
+              <li>Promotions, transfers & student documents</li>
             </ul>
           </div>
 
           <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ATTENDANCE</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ATTENDANCE</h3>
             <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
-              <li>Record daily student attendance logs</li>
-              <li>Mark entire classes quickly in seconds</li>
-              <li>Track present, absent, leave, & late notes</li>
-              <li>View monthly attendance histories</li>
-              <li>Identify students with low attendance</li>
-              <li>Generate daily and monthly reports</li>
+              <li>Daily attendance & status tracking</li>
+              <li>Working-day based attendance</li>
+              <li>Attendance history, alerts & reports</li>
             </ul>
           </div>
 
           <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ACADEMICS</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ACADEMICS</h3>
             <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
-              <li>Map academic structures & terms</li>
-              <li>Assign teachers to subjects & classes</li>
-              <li>Configure curriculum & chapter milestones</li>
-              <li>Track real-time syllabus progress</li>
-              <li>Schedule examinations and tests</li>
-              <li>Record term marks & grade sheets</li>
-              <li>Generate professional report cards</li>
+              <li>Academic years, classes & sections</li>
+              <li>Subjects & chapter mapping</li>
+              <li>Configurable academic structures</li>
             </ul>
           </div>
 
           <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>QUESTION PAPERS</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>QUESTION PAPERS</h3>
             <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
-              <li>Build balanced school question papers</li>
-              <li>Maintain central reusable question banks</li>
-              <li>Add mathematical formulas & symbols</li>
-              <li>Design exam sections with mark tallies</li>
-              <li>Preview papers instantly before printing</li>
-              <li>Export print-ready PDF exam papers</li>
+              <li>Question bank & paper builder</li>
+              <li>Sections, marks & formatting</li>
+              <li>Preview & print-ready PDF</li>
             </ul>
           </div>
 
           <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ANALYTICS</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>ANALYTICS</h3>
             <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
-              <li>Analyze student academic progress</li>
-              <li>Compare performance across classes</li>
-              <li>Assess subject-wise average grades</li>
-              <li>Identify top performers & pupils needing support</li>
-              <li>Track term-over-term growth trends</li>
+              <li>Student performance insights</li>
+              <li>Subject & class analytics</li>
+              <li>Trends, rankings & risk indicators</li>
             </ul>
           </div>
 
           <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>FEES</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>FEES</h3>
             <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
-              <li>Configure fee schedules & structures</li>
-              <li>Log payments for cash, UPI, & cards</li>
-              <li>Maintain detailed student fee ledgers</li>
-              <li>Record academic concessions & discounts</li>
-              <li>Track pending balances & dues lists</li>
-              <li>Generate instant printed receipts</li>
+              <li>Fee structures & student ledgers</li>
+              <li>Payments, concessions & balances</li>
+              <li>Official payment receipts</li>
             </ul>
           </div>
 
           <div className="card" style={{ padding: '24px', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 'var(--radius-md)' }}>
-            <h3 style={{ fontSize: '16px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>CALENDAR & REPORTS</h3>
+            <h3 style={{ fontSize: '15px', fontWeight: 800, color: 'var(--accent)', marginBottom: 12 }}>CALENDAR & REPORTS</h3>
             <ul style={{ paddingLeft: 16, fontSize: '13px', color: 'var(--text-muted)', lineHeight: 1.8 }}>
-              <li>Manage school working days & holidays</li>
-              <li>Define calendar events & examinations</li>
-              <li>Filter, preview and export report records</li>
-              <li>Export clean files directly to Excel and PDF</li>
+              <li>Working days, holidays & events</li>
+              <li>Examination calendar integration</li>
+              <li>Filtered reports with Excel/PDF export</li>
             </ul>
           </div>
         </div>
@@ -625,9 +648,9 @@ export default function Home() {
       <section id="academics" className="container">
         <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>04 / ACADEMICS</span>
-          <h2 className="section-title" style={{ marginTop: 8 }}>Build your academic structure once.</h2>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Organize classes, subjects and academic terms.</h2>
           <p className="body-text">
-            Configure Academic Years, Classes, Subjects, and Chapters directly. Ensure syllabus coverage matches testing.
+            Configure academic structures, syllabus chapters and subject mappings for your school.
           </p>
           <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <div className="floating-tour-dot" />
@@ -644,23 +667,45 @@ export default function Home() {
 
       {/* 9B. ATTENDANCE SECTION */}
       <section id="attendance" className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
-        <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 40px auto' }}>
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>04B / ATTENDANCE</span>
           <h2 className="section-title" style={{ marginTop: 8 }}>Attendance Without the Paper Register.</h2>
-          <p className="body-text">
-            Mark daily attendance, log present/absent metrics instantly, and review student attendance averages linked directly with the school calendar working days and holidays.
+          <p className="body-text" style={{ marginTop: 12 }}>
+            Record daily attendance, track student attendance history and generate useful attendance insights — all connected to the school’s academic calendar.
           </p>
           <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <div className="floating-tour-dot" />
-            <span>● PLAYABLE DEMO — Click status letters (P, A, L, H, LV) to toggle class register records</span>
+            <span>● PLAYABLE DEMO — Toggle statuses, search roster, and try bulk mark actions</span>
           </div>
         </div>
         <div className="hide-on-mobile">
           <AttendancePreview />
         </div>
         <div className="show-on-mobile-only" style={{ textAlign: 'center', padding: '20px', background: 'var(--surface-hover)', borderRadius: '8px', border: '1px solid var(--border)' }}>
-          <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Today's Attendance: 92%</strong>
-          <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Class 8-A register synced with school calendar metrics.</span>
+          <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Class 8-A Attendance Register</strong>
+          <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Connected to central academic calendar working days & holidays.</span>
+        </div>
+      </section>
+
+      {/* 9C. CENTRAL SCHOOL CALENDAR */}
+      <section id="calendar" className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>04C / CENTRAL CALENDAR</span>
+          <h2 className="section-title" style={{ marginTop: 8 }}>One calendar for the entire school.</h2>
+          <p className="body-text" style={{ marginTop: 12 }}>
+            Manage working days, holidays, examinations and school events from one connected academic calendar. SSS can also integrate and import official holiday schedules directly into your school timeline.
+          </p>
+          <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <div className="floating-tour-dot" />
+            <span>● PLAYABLE DEMO — Click calendar dates to inspect event details, working day rules & exam locks</span>
+          </div>
+        </div>
+        <div className="hide-on-mobile">
+          <SchoolCalendarPreview />
+        </div>
+        <div className="show-on-mobile-only" style={{ textAlign: 'center', padding: '20px', background: 'var(--surface-hover)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+          <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Central School Calendar</strong>
+          <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>AY 2026-27: 214 Working Days · 24 Holidays · 18 Exam Days</span>
         </div>
       </section>
 
@@ -788,6 +833,28 @@ export default function Home() {
         </div>
         <div className="show-on-mobile-only">
           <MobileFinanceShowcase />
+        </div>
+      </section>
+
+      {/* 19B. REPORTS CENTER */}
+      <section id="reports" className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>08B / REPORTS CENTER</span>
+          <h2 className="section-title" style={{ marginTop: 8 }}>From School Data to Useful Reports.</h2>
+          <p className="body-text" style={{ marginTop: 12 }}>
+            Turn student, attendance, academic, examination and financial records into structured reports that can be filtered, reviewed and exported when needed.
+          </p>
+          <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <div className="floating-tour-dot" />
+            <span>● PLAYABLE DEMO — Switch report categories, adjust filters & test PDF/Excel export actions</span>
+          </div>
+        </div>
+        <div className="hide-on-mobile">
+          <ReportsPreview />
+        </div>
+        <div className="show-on-mobile-only" style={{ textAlign: 'center', padding: '20px', background: 'var(--surface-hover)', borderRadius: '8px', border: '1px solid var(--border)' }}>
+          <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Structured School Reports</strong>
+          <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Export Attendance, Academic, Exam, and Fee records to Excel & PDF.</span>
         </div>
       </section>
 
@@ -1059,7 +1126,7 @@ export default function Home() {
                 <button className="btn btn-primary" style={{ marginTop: 'auto' }} onClick={() => {
                   document.getElementById('cta').scrollIntoView({ behavior: 'smooth' });
                 }}>
-                  Choose {planKey}
+                  {plan.ctaText || `Choose ${planKey}`}
                 </button>
               </div>
             );
@@ -1204,12 +1271,13 @@ export default function Home() {
               </p>
             </div>
           ) : (
-            <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <form ref={formRef} onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div className="demo-form-grid">
                 <div className="qp-form-group">
                   <label className="qp-form-label">School Name</label>
                   <input 
                     type="text" 
+                    name="school_name"
                     required 
                     className="qp-form-input" 
                     value={demoForm.schoolName}
@@ -1220,6 +1288,7 @@ export default function Home() {
                   <label className="qp-form-label">Contact Person</label>
                   <input 
                     type="text" 
+                    name="contact_person"
                     required 
                     className="qp-form-input" 
                     value={demoForm.contactPerson}
@@ -1233,6 +1302,7 @@ export default function Home() {
                   <label className="qp-form-label">Phone Number</label>
                   <input 
                     type="tel" 
+                    name="phone"
                     required 
                     className="qp-form-input" 
                     value={demoForm.phone}
@@ -1243,6 +1313,7 @@ export default function Home() {
                   <label className="qp-form-label">Email Address</label>
                   <input 
                     type="email" 
+                    name="email"
                     required 
                     className="qp-form-input" 
                     value={demoForm.email}
@@ -1255,6 +1326,7 @@ export default function Home() {
                 <div className="qp-form-group">
                   <label className="qp-form-label">Number of Students</label>
                   <select 
+                    name="students_count"
                     className="qp-select-box"
                     value={demoForm.studentsCount}
                     onChange={(e) => setDemoForm({...demoForm, studentsCount: e.target.value})}
@@ -1268,6 +1340,7 @@ export default function Home() {
                 <div className="qp-form-group">
                   <label className="qp-form-label">Interested Plan</label>
                   <select 
+                    name="interested_plan"
                     className="qp-select-box"
                     value={demoForm.interestedPlan}
                     onChange={(e) => setDemoForm({...demoForm, interestedPlan: e.target.value})}
@@ -1282,6 +1355,7 @@ export default function Home() {
               <div className="qp-form-group">
                 <label className="qp-form-label">Message / Requirements</label>
                 <textarea 
+                  name="message"
                   className="qp-form-input" 
                   rows={3} 
                   value={demoForm.message}
@@ -1289,8 +1363,8 @@ export default function Home() {
                 />
               </div>
 
-              <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: 14 }}>
-                Request Demo
+              <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: 14 }} disabled={submitting}>
+                {submitting ? 'Sending Request...' : 'Request Demo'}
               </button>
             </form>
           )}

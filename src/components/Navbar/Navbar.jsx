@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ArrowRight, ChevronDown, Users, BookOpen, TrendingUp, FileText, Award, BarChart2, IndianRupee, Settings } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronDown, Users, BookOpen, FileText, BarChart2, IndianRupee, Settings } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
 import './Navbar.css';
@@ -43,12 +43,13 @@ export default function Navbar() {
   const dropdownItems = [
     { label: 'Student Management', desc: 'Centralized profiles and details slide-over', icon: <Users size={14} />, id: 'student-management' },
     { label: 'Academics', desc: 'Visual syllabus, chapters configuration', icon: <BookOpen size={14} />, id: 'academics' },
-    { label: 'Assessments', desc: 'Custom weights and mark distributions', icon: <TrendingUp size={14} />, id: 'analytics' },
-    { label: 'Question Papers', desc: 'Multi-stage A4 template compiler', icon: <FileText size={14} />, id: 'question-papers' },
-    { label: 'Results', desc: 'Report card grading operations', icon: <Award size={14} />, id: 'results' },
-    { label: 'Analytics', desc: 'Subject averages and risk metrics', icon: <BarChart2 size={14} />, id: 'analytics' },
-    { label: 'Finance', desc: 'Tuition statements ledger balances', icon: <IndianRupee size={14} />, id: 'finance' },
-    { label: 'Configuration', desc: 'Metadata developer form registries', icon: <Settings size={14} />, id: 'configuration' }
+    { label: 'Attendance', desc: 'Daily roster logs & calendar sync', icon: <Users size={14} />, id: 'attendance' },
+    { label: 'Central Calendar', desc: 'Working days, holidays & exam slots', icon: <BookOpen size={14} />, id: 'calendar' },
+    { label: 'Question Papers', desc: 'Multi-stage question paper builder', icon: <FileText size={14} />, id: 'question-papers' },
+    { label: 'Analytics', desc: 'Subject averages and performance trends', icon: <BarChart2 size={14} />, id: 'analytics' },
+    { label: 'Finance', desc: 'Fee collections & dues ledger', icon: <IndianRupee size={14} />, id: 'finance' },
+    { label: 'Reports', desc: 'Structured PDF/Excel data export', icon: <FileText size={14} />, id: 'reports' },
+    { label: 'Customization', desc: 'Adapt forms to your school workflow', icon: <Settings size={14} />, id: 'configuration' }
   ];
 
   return (
