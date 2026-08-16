@@ -1,11 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, Users, BookOpen, Layers } from 'lucide-react';
 import './AcademicFlow.css';
 
-export default function AcademicFlow() {
+export default function AcademicFlow({ isTourActive }) {
   const [selectedClass, setSelectedClass] = useState('KG-1');
   const [selectedSubject, setSelectedSubject] = useState('English');
   const [selectedChapter, setSelectedChapter] = useState('Chapter 01');
+
+  useEffect(() => {
+    if (!isTourActive) return;
+
+    const configs = [
+      { cls: 'KG-1', sub: 'English' },
+      { cls: 'Class-6', sub: 'Mathematics' },
+      { cls: 'Class-6', sub: 'Science' }
+    ];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % configs.length;
+      setSelectedClass(configs[index].cls);
+      setSelectedSubject(configs[index].sub);
+    }, 1200);
+
+    return () => clearInterval(interval);
+  }, [isTourActive]);
 
   const classes = ['KG-1', 'Class-6'];
   const subjects = selectedClass === 'KG-1' ? ['English', 'Cognitive'] : ['Mathematics', 'Science'];

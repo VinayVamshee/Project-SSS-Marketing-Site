@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar as CalendarIcon, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import './SchoolCalendarPreview.css';
 
-export default function SchoolCalendarPreview() {
+export default function SchoolCalendarPreview({ isTourActive }) {
   const [academicYear, setAcademicYear] = useState('2026-2027');
   const [selectedDate, setSelectedDate] = useState(15);
   const selectedMonth = 'August 2026';
+
+  useEffect(() => {
+    if (!isTourActive) return;
+
+    const dates = [15, 21, 26, 31, 8];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % dates.length;
+      setSelectedDate(dates[index]);
+    }, 1200);
+
+    return () => clearInterval(interval);
+  }, [isTourActive]);
 
   // Month dates mock data for August 2026
   // Categories: working (default), holiday, exam, event, vacation

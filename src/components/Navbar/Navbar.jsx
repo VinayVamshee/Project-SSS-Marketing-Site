@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ArrowRight, ChevronDown, Users, BookOpen, FileText, BarChart2, IndianRupee, Settings } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import ThemeToggle from '../ThemeToggle/ThemeToggle';
@@ -8,6 +8,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [productDropdownOpen, setProductDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,6 +21,16 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setProductDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const scrollToSection = (id) => {
@@ -61,14 +72,14 @@ export default function Navbar() {
           </a>
 
           <ul className="navbar-links">
-            {/* Product Dropdown Trigger */}
-            <li 
-              className="navbar-dropdown-wrapper"
-              onMouseEnter={() => setProductDropdownOpen(true)}
-              onMouseLeave={() => setProductDropdownOpen(false)}
-            >
-              <span className="navbar-link dropdown-trigger" style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4 }}>
-                Product <ChevronDown size={12} />
+            {/* Product Dropdown Trigger - Click Only */}
+            <li className="navbar-dropdown-wrapper" ref={dropdownRef}>
+              <span 
+                className="navbar-link dropdown-trigger" 
+                style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 4, userSelect: 'none' }}
+                onClick={() => setProductDropdownOpen(prev => !prev)}
+              >
+                Product <ChevronDown size={12} style={{ transform: productDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s ease' }} />
               </span>
               {productDropdownOpen && (
                 <div className="navbar-mega-dropdown">

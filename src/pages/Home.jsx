@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
   Users, BookOpen, FileText, Award, CheckSquare, IndianRupee, 
-  TrendingUp, Settings, ChevronDown, ShieldCheck, ArrowRight
+  TrendingUp, Settings, ChevronDown, ShieldCheck, ArrowRight, X
 } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
@@ -31,10 +31,10 @@ import MobileHeroPreview from '../components/MobileHeroPreview/MobileHeroPreview
 import { 
   MobileQuestionPaperShowcase, 
   MobileAnalyticsShowcase, 
-  MobileFinanceShowcase, 
   MobileStudentManagementShowcase, 
   MobileAcademicsShowcase, 
-  MobileExaminationsShowcase 
+  MobileExaminationsShowcase,
+  MobileFinanceShowcase 
 } from '../components/MobileShowcases/MobileShowcases';
 
 // Mock Data
@@ -46,12 +46,15 @@ import './Home.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const tourStepsData = [
-  { id: 'student-management', label: 'Student Management', desc: 'Click student cards to inspect complete 360° academic records, parent info, and ledger files.' },
-  { id: 'academics', label: 'Academic Syllabus config', desc: 'Create classes, link subjects, and map chapter nodes in a visual syllabus hierarchy tree.' },
-  { id: 'question-papers', label: 'Question Paper Engine V2', desc: 'Filter class questions, toggle answer lines, and customize A4 printable exam templates.' },
-  { id: 'analytics', label: 'BI Analytics', desc: 'Analyze overall performance grade averages and track metrics like risk indicators.' },
-  { id: 'finance', label: 'Fee Management', desc: 'Verify fee breakdown ledger statements and transactions directly from the student profile.' },
-  { id: 'configuration', label: 'Custom registries', desc: 'Add new field metadata to forms instantly.' }
+  { id: 'student-management', label: 'Student Management', desc: 'Search students and click student cards to inspect complete 360° academic records, attendance history, and fee ledgers.' },
+  { id: 'academics', label: 'Academic Structure', desc: 'Organize academic terms, classes, sections, subjects, and chapter completion progress.' },
+  { id: 'attendance', label: 'Attendance Register', desc: 'Record daily attendance, track present/absent counts, and view automatic low attendance alerts.' },
+  { id: 'calendar', label: 'Central School Calendar', desc: 'Manage working days, holidays, examination dates, and school events from one master calendar.' },
+  { id: 'question-papers', label: 'Question Paper Engine', desc: 'Filter question banks, arrange exam sections, set marks, and export print-ready PDF papers.' },
+  { id: 'analytics', label: 'Academic Analytics', desc: 'Turn raw grades into visual performance trends, class averages, and top/at-risk student insights.' },
+  { id: 'finance', label: 'Fee Management', desc: 'Track fee collection ledgers, payment modes, student dues, and generate instant receipts.' },
+  { id: 'reports', label: 'Reports Center', desc: 'Filter and export Attendance, Academic, Exam, and Fee records directly to Excel and PDF.' },
+  { id: 'configuration', label: 'Built Around Your School', desc: 'Configure custom student fields, custom forms, and template rules tailored to your school.' }
 ];
 
 const laptopScreens = ['Dashboard', 'Students', 'QuestionPaper', 'Analytics', 'Finance', 'Academics'];
@@ -254,6 +257,26 @@ export default function Home() {
   }, []);
 
   // Guided Spotlight positioning
+  const stopTour = () => {
+    setTourStep(0);
+    setSpotlightRect(null);
+  };
+
+  const nextTourStep = () => {
+    if (tourStep >= tourStepsData.length) {
+      stopTour();
+    } else {
+      setTourStep(prev => prev + 1);
+    }
+  };
+
+  const prevTourStep = () => {
+    if (tourStep > 1) {
+      setTourStep(prev => prev - 1);
+    }
+  };
+
+  // Guided Spotlight positioning
   useEffect(() => {
     if (tourStep === 0) {
       setSpotlightRect(null);
@@ -261,10 +284,11 @@ export default function Home() {
     }
     const currentStepData = tourStepsData[tourStep - 1];
     const element = document.getElementById(currentStepData.id);
+
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      
-      const timer = setTimeout(() => {
+
+      const updateRect = () => {
         const rect = element.getBoundingClientRect();
         setSpotlightRect({
           top: rect.top + window.scrollY - 8,
@@ -272,10 +296,24 @@ export default function Home() {
           width: rect.width + 16,
           height: rect.height + 16
         });
-      }, 600);
-      return () => clearTimeout(timer);
+      };
+
+      updateRect();
+      const t1 = setTimeout(updateRect, 300);
+      const t2 = setTimeout(updateRect, 600);
+      const t3 = setTimeout(updateRect, 1000);
+
+      window.addEventListener('scroll', updateRect, { passive: true });
+      window.addEventListener('resize', updateRect, { passive: true });
+
+      return () => {
+        clearTimeout(t1);
+        clearTimeout(t2);
+        clearTimeout(t3);
+        window.removeEventListener('scroll', updateRect);
+        window.removeEventListener('resize', updateRect);
+      };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tourStep]);
 
   // Laptop screen cycle timer
@@ -343,51 +381,81 @@ export default function Home() {
 
       {/* Floating Guided Tour Trigger */}
       <button className="floating-tour-trigger" onClick={() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         setTourStep(1);
       }}>
         <div className="floating-tour-dot" />
         <span>Try SSS</span>
       </button>
 
-      {/* Guided Tour Backdrop Cutout Spotlight */}
-      {tourStep > 0 && spotlightRect && (
-        <>
-          <div className="tour-backdrop" />
-          <div 
-            className="tour-spotlight-box"
-            style={{
-              top: spotlightRect.top,
-              left: spotlightRect.left,
-              width: spotlightRect.width,
-              height: spotlightRect.height
-            }}
-          />
-          <div 
-            className="tour-tooltip-box"
-            style={{
-              top: spotlightRect.top + spotlightRect.height + 16,
-              left: Math.max(16, Math.min(window.innerWidth - 300, spotlightRect.left + (spotlightRect.width / 2) - 140))
-            }}
-          >
-            <div className="tour-tooltip-indicator">
-              <div className="floating-tour-dot" />
-              <span>Step {tourStep} of 6: {tourStepsData[tourStep - 1].label}</span>
-            </div>
-            <p style={{ fontSize: '13px', lineHeight: 1.4, color: 'var(--text)' }}>
-              {tourStepsData[tourStep - 1].desc}
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 8 }}>
-              <button className="btn btn-secondary" style={{ padding: '6px 12px', fontSize: '11px' }} onClick={() => setTourStep(0)}>
-                Skip
-              </button>
-              <button className="btn btn-primary" style={{ padding: '6px 12px', fontSize: '11px' }} onClick={() => setTourStep(prev => prev === 6 ? 0 : prev + 1)}>
-                {tourStep === 6 ? 'Finish' : 'Next →'}
-              </button>
-            </div>
-          </div>
-        </>
-      )}
+      {/* Guided Tour Backdrop, Spotlight & Centered Modal */}
+      <AnimatePresence>
+        {tourStep > 0 && (
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="tour-backdrop" 
+              onClick={stopTour}
+            />
+
+            {/* Target Element Highlight Box */}
+            {spotlightRect && (
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0 }}
+                className="tour-spotlight-box"
+                style={{
+                  top: spotlightRect.top,
+                  left: spotlightRect.left,
+                  width: spotlightRect.width,
+                  height: spotlightRect.height
+                }}
+              />
+            )}
+
+            {/* Fixed Centered Floating Tour Modal */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30, x: '-50%' }}
+              animate={{ opacity: 1, y: 0, x: '-50%' }}
+              exit={{ opacity: 0, y: 30, x: '-50%' }}
+              className="tour-tooltip-box-centered"
+            >
+              <div className="tour-modal-header">
+                <div className="tour-tooltip-indicator">
+                  <div className="floating-tour-dot" />
+                  <span>Step {tourStep} of {tourStepsData.length}: {tourStepsData[tourStep - 1].label}</span>
+                </div>
+                <button className="tour-close-btn" onClick={stopTour} title="Close Tour">
+                  <X size={16} />
+                </button>
+              </div>
+
+              <p className="tour-modal-desc">
+                {tourStepsData[tourStep - 1].desc}
+              </p>
+
+              <div className="tour-modal-footer">
+                <button className="btn btn-secondary" style={{ padding: '6px 14px', fontSize: '12px' }} onClick={stopTour}>
+                  Skip Tour
+                </button>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  {tourStep > 1 && (
+                    <button className="btn btn-secondary" style={{ padding: '6px 14px', fontSize: '12px' }} onClick={prevTourStep}>
+                      ← Back
+                    </button>
+                  )}
+                  <button className="btn btn-primary" style={{ padding: '6px 16px', fontSize: '12px' }} onClick={nextTourStep}>
+                    {tourStep === tourStepsData.length ? 'Finish' : 'Next →'}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* 1. HERO SECTION (SPLIT LAYOUT) */}
       <section className="hero-section" ref={heroRef}>
@@ -615,7 +683,7 @@ export default function Home() {
         </div>
         
         <div className="hide-on-mobile">
-          <Student360Preview />
+          <Student360Preview isTourActive={tourStep === 1} />
           
           <div style={{ textAlign: 'center', marginTop: 80 }}>
             <h3 className="section-title" style={{ fontSize: '24px' }}>From admission to achievement.</h3>
@@ -658,7 +726,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hide-on-mobile">
-          <AcademicFlow />
+          <AcademicFlow isTourActive={tourStep === 2} />
         </div>
         <div className="show-on-mobile-only">
           <MobileAcademicsShowcase />
@@ -679,7 +747,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hide-on-mobile">
-          <AttendancePreview />
+          <AttendancePreview isTourActive={tourStep === 3} />
         </div>
         <div className="show-on-mobile-only" style={{ textAlign: 'center', padding: '20px', background: 'var(--surface-hover)', borderRadius: '8px', border: '1px solid var(--border)' }}>
           <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Class 8-A Attendance Register</strong>
@@ -701,7 +769,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hide-on-mobile">
-          <SchoolCalendarPreview />
+          <SchoolCalendarPreview isTourActive={tourStep === 4} />
         </div>
         <div className="show-on-mobile-only" style={{ textAlign: 'center', padding: '20px', background: 'var(--surface-hover)', borderRadius: '8px', border: '1px solid var(--border)' }}>
           <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Central School Calendar</strong>
@@ -736,7 +804,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hide-on-mobile">
-          <QuestionPaperPreview />
+          <QuestionPaperPreview isTourActive={tourStep === 5} />
         </div>
         <div className="show-on-mobile-only">
           <MobileQuestionPaperShowcase />
@@ -767,7 +835,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hide-on-mobile">
-          <AnalyticsPreview />
+          <AnalyticsPreview isTourActive={tourStep === 6} />
 
           {/* Syllabus / Chapter coverage visual */}
           <div style={{ maxWidth: '800px', margin: '60px auto 0 auto', display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -829,7 +897,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hide-on-mobile">
-          <FinancePreview />
+          <FinancePreview isTourActive={tourStep === 7} />
         </div>
         <div className="show-on-mobile-only">
           <MobileFinanceShowcase />
@@ -850,7 +918,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hide-on-mobile">
-          <ReportsPreview />
+          <ReportsPreview isTourActive={tourStep === 8} />
         </div>
         <div className="show-on-mobile-only" style={{ textAlign: 'center', padding: '20px', background: 'var(--surface-hover)', borderRadius: '8px', border: '1px solid var(--border)' }}>
           <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Structured School Reports</strong>
@@ -929,7 +997,7 @@ export default function Home() {
             <div className="floating-tour-dot" />
             <span>● PLAYABLE DEMO — Click custom fields below to watch them slide dynamically into your school's form template</span>
           </div>
-          <MetadataBuilder />
+          <MetadataBuilder isTourActive={tourStep === 9} />
         </div>
       </section>
 

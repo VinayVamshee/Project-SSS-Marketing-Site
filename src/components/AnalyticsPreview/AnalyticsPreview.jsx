@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ResponsiveContainer, BarChart, Bar, LineChart, Line, XAxis, Tooltip, Legend } from 'recharts';
 import './AnalyticsPreview.css';
 
@@ -18,8 +18,22 @@ const progressTrendData = [
   { exam: 'Annual', score: 70 }
 ];
 
-export default function AnalyticsPreview() {
+export default function AnalyticsPreview({ isTourActive }) {
   const [activeTab, setActiveTab] = useState('executive');
+
+  useEffect(() => {
+    if (!isTourActive) return;
+
+    const tabs = ['executive', 'student', 'subject'];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % tabs.length;
+      setActiveTab(tabs[index]);
+    }, 1200);
+
+    return () => clearInterval(interval);
+  }, [isTourActive]);
 
   const subjectsTable = [
     { name: 'English Literacy', avg: '60.3%', high: '72%', grade: 'B2' },

@@ -4,7 +4,7 @@ import { Settings, FileText, Download, ToggleLeft, ToggleRight, ArrowRight, Arro
 import { MOCK_QUESTIONS } from '../../data/questions';
 import './QuestionPaperPreview.css';
 
-export default function QuestionPaperPreview() {
+export default function QuestionPaperPreview({ isTourActive }) {
   const [selectedClass, setSelectedClass] = useState('Class-6');
   const [selectedSubject, setSelectedSubject] = useState('Mathematics');
   const [selectedChapter, setSelectedChapter] = useState('Algebra');
@@ -16,6 +16,18 @@ export default function QuestionPaperPreview() {
   const [currentStep, setCurrentStep] = useState(1); // 1: Questions, 2: Structure, 3: Template, 4: Preview
   const [isMobile, setIsMobile] = useState(false);
   const [showMobileBank, setShowMobileBank] = useState(false);
+
+  useEffect(() => {
+    if (!isTourActive) return;
+
+    let step = 1;
+    const interval = setInterval(() => {
+      step = step >= 4 ? 1 : step + 1;
+      setCurrentStep(step);
+    }, 1200);
+
+    return () => clearInterval(interval);
+  }, [isTourActive]);
 
   const [schoolName, setSchoolName] = useState('Vamshee Techno School');
   const [examTitle, setExamTitle] = useState('First Term Examinations');

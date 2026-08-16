@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2, ListPlus, ShieldCheck, Database, FileSpreadsheet, Group } from 'lucide-react';
 import './MetadataBuilder.css';
 
-export default function MetadataBuilder() {
+export default function MetadataBuilder({ isTourActive }) {
   const [activeFields, setActiveFields] = useState([
     { id: 'name', label: 'Student Name', type: 'text', placeholder: 'Enter student full name' },
     { id: 'dob', label: 'Date of Birth', type: 'date', placeholder: '' }
@@ -15,6 +15,26 @@ export default function MetadataBuilder() {
     { id: 'aadhar', label: 'Aadhar Card ID', type: 'text', placeholder: '12-digit number' },
     { id: 'blood', label: 'Blood Group', type: 'text', placeholder: 'e.g. O+, AB-' }
   ];
+
+  useEffect(() => {
+    if (!isTourActive) return;
+
+    let index = 0;
+    const interval = setInterval(() => {
+      const field = libraryFields[index % libraryFields.length];
+      setActiveFields(prev => {
+        if (prev.some(f => f.id === field.id)) {
+          return prev.filter(f => f.id !== field.id);
+        } else {
+          return [...prev, field];
+        }
+      });
+      index++;
+    }, 1100);
+
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTourActive]);
 
   const addField = (field) => {
     if (activeFields.some(f => f.id === field.id)) return;

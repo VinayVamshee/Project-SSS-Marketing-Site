@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Users, Calendar, AlertTriangle, Search, CheckCircle2, XCircle, FileText } from 'lucide-react';
 import './AttendancePreview.css';
 
-export default function AttendancePreview() {
+export default function AttendancePreview({ isTourActive }) {
   const [academicYear, setAcademicYear] = useState('2026-2027');
   const [selectedClass, setSelectedClass] = useState('Class 8');
   const [selectedSection, setSelectedSection] = useState('Section A');
@@ -18,6 +18,27 @@ export default function AttendancePreview() {
     { id: 6, rollNo: '06', admNo: 'ADM-2024-106', name: 'Ananya Reddy', status: 'Present' },
     { id: 7, rollNo: '07', admNo: 'ADM-2024-107', name: 'Kabir Das', status: 'Leave' },
   ]);
+
+  useEffect(() => {
+    if (!isTourActive) return;
+
+    const statusOptions = ['Present', 'Absent', 'Late', 'Half Day', 'Leave'];
+    let studentIdx = 1;
+    let statusIdx = 0;
+
+    const interval = setInterval(() => {
+      setStudents(prev => prev.map(s => {
+        if (s.id === ((studentIdx % 5) + 1)) {
+          return { ...s, status: statusOptions[statusIdx % statusOptions.length] };
+        }
+        return s;
+      }));
+      studentIdx++;
+      statusIdx++;
+    }, 1100);
+
+    return () => clearInterval(interval);
+  }, [isTourActive]);
 
   const statuses = ['Present', 'Absent', 'Late', 'Half Day', 'Leave'];
 

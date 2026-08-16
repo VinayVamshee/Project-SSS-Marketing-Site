@@ -1,14 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FileSpreadsheet, Download, FileText, CheckCircle2 } from 'lucide-react';
 import './ReportsPreview.css';
 
-export default function ReportsPreview() {
+export default function ReportsPreview({ isTourActive }) {
   const [reportType, setReportType] = useState('attendance');
   const [academicYear, setAcademicYear] = useState('2026-2027');
   const [selectedClass, setSelectedClass] = useState('Class 8');
   const [selectedSection, setSelectedSection] = useState('Section A');
   const [dateRange, setDateRange] = useState('July 1 – August 14, 2026');
   const [notification, setNotification] = useState(null);
+
+  useEffect(() => {
+    if (!isTourActive) return;
+
+    const reportTypes = ['attendance', 'student', 'academic', 'exam', 'fee'];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % reportTypes.length;
+      const nextReport = reportTypes[index];
+      setReportType(nextReport);
+      setNotification(`Generating ${reportTitles[nextReport]} preview...`);
+      setTimeout(() => setNotification(null), 1000);
+    }, 1300);
+
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isTourActive]);
 
   const triggerExport = (format) => {
     setNotification(`Exporting ${reportTitles[reportType]} as ${format}...`);

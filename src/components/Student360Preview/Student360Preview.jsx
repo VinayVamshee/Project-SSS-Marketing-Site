@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, BookOpen, Calendar, Award, IndianRupee, ArrowRight } from 'lucide-react';
 import { MOCK_STUDENTS } from '../../data/students';
 import './Student360Preview.css';
 
-export default function Student360Preview() {
+export default function Student360Preview({ isTourActive }) {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [activeTab, setActiveTab] = useState('personal');
+
+  useEffect(() => {
+    if (!isTourActive) {
+      setSelectedStudent(null);
+      return;
+    }
+
+    setSelectedStudent(MOCK_STUDENTS[0]);
+    const tabList = ['personal', 'parent', 'academics', 'attendance', 'results', 'fees'];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % tabList.length;
+      setActiveTab(tabList[index]);
+    }, 1100);
+
+    return () => clearInterval(interval);
+  }, [isTourActive]);
 
   const tabs = [
     { id: 'personal', label: 'Personal Info', icon: User },

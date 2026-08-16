@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CreditCard, Wallet, Smartphone } from 'lucide-react';
 import './FinancePreview.css';
 
-export default function FinancePreview() {
+export default function FinancePreview({ isTourActive }) {
   const [paymentMethod, setPaymentMethod] = useState('UPI');
+
+  useEffect(() => {
+    if (!isTourActive) return;
+
+    const methodsList = ['UPI', 'Card', 'Cash'];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % methodsList.length;
+      setPaymentMethod(methodsList[index]);
+    }, 1100);
+
+    return () => clearInterval(interval);
+  }, [isTourActive]);
 
   const methods = [
     { id: 'Cash', label: 'Cash', icon: Wallet },
