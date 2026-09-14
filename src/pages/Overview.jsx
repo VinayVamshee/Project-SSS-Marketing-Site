@@ -341,7 +341,7 @@ export default function Overview({ activeMode = 'overview', onSelectMode }) {
         <div className="ov-hero-container">
           <div className="ov-badge">
             <Sparkles size={13} style={{ color: 'var(--accent-color)' }} />
-            <span>SSS — COMPLETE SCHOOL MANAGEMENT SUITE</span>
+            <span>SSS — SCHOOL SCHOLASTIC SYSTEM</span>
           </div>
 
           <h1 className="ov-title">

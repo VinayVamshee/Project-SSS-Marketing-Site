@@ -41,6 +41,14 @@
   text-decoration: none;
 }
 
+.navbar-logo-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  display: block;
+}
+
 .navbar-brand-group {
   display: flex;
   align-items: center;
@@ -322,6 +330,11 @@
 
   .navbar-logo {
     font-size: 16px;
+  }
+
+  .navbar-logo-icon {
+    width: 22px;
+    height: 22px;
   }
 
   .navbar-mode-btn {

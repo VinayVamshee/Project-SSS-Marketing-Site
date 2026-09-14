@@ -84,6 +84,7 @@ export default function Navbar({ activeMode = 'overview', onSelectMode }) {
                 window.scrollTo({ top: 0, behavior: 'smooth' }); 
               }}
             >
+              <img src="/favicon-32x32.png" alt="SSS" className="navbar-logo-icon" width="26" height="26" />
               <span>SSS</span>
             </a>
 
