@@ -22,6 +22,8 @@ import AttendancePreview from '../components/AttendancePreview/AttendancePreview
 import SchoolCalendarPreview from '../components/SchoolCalendarPreview/SchoolCalendarPreview';
 import ReportsPreview from '../components/ReportsPreview/ReportsPreview';
 import FinancePreview from '../components/FinancePreview/FinancePreview';
+import TimetablePreview from '../components/TimetablePreview/TimetablePreview';
+import DataMigrationPreview from '../components/DataMigrationPreview/DataMigrationPreview';
 import ProductShowcase from '../components/ProductShowcase/ProductShowcase';
 import StickyProductStory from '../components/StickyProductStory/StickyProductStory';
 import WatchItBuild from '../components/WatchItBuild/WatchItBuild';
@@ -53,13 +55,15 @@ const tourStepsData = [
   { id: 'question-papers', label: 'Question Paper Engine', desc: 'Filter question banks, arrange exam sections, set marks, and export print-ready PDF papers.' },
   { id: 'analytics', label: 'Academic Analytics', desc: 'Turn raw grades into visual performance trends, class averages, and top/at-risk student insights.' },
   { id: 'finance', label: 'Fee Management', desc: 'Track fee collection ledgers, payment modes, student dues, and generate instant receipts.' },
+  { id: 'timetable', label: 'Timetable & Generator', desc: 'Manage class & teacher timetables with zero-clash smart generation.' },
   { id: 'reports', label: 'Reports Center', desc: 'Filter and export Attendance, Academic, Exam, and Fee records directly to Excel and PDF.' },
+  { id: 'data-migration', label: 'Bring Your Existing Data', desc: 'Import past student records, previous academic years, and historical school data from Excel.' },
   { id: 'configuration', label: 'Built Around Your School', desc: 'Configure custom student fields, custom forms, and template rules tailored to your school.' }
 ];
 
 const laptopScreens = ['Dashboard', 'Students', 'QuestionPaper', 'Analytics', 'Finance', 'Academics'];
 
-export default function Home() {
+export default function Home({ activeMode = 'explore', onSelectMode }) {
   const containerRef = useRef(null);
   const heroRef = useRef(null);
 
@@ -372,7 +376,7 @@ export default function Home() {
   return (
     <div ref={containerRef} className="home-page">
       <div className="grid-bg" />
-      <Navbar />
+      <Navbar activeMode={activeMode} onSelectMode={onSelectMode} />
 
       {/* Page Progress Indicator */}
       <div className="scroll-progress-bar">
@@ -904,6 +908,25 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 19A. TIMETABLE MANAGEMENT */}
+      <section id="timetable" className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>08A / TIMETABLE & SMART GENERATOR</span>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Create schedules without timetable chaos.</h2>
+          <h4 style={{ fontSize: '18px', color: 'var(--accent)', marginTop: 8, fontWeight: 700 }}>Plan once. Generate the timetable automatically.</h4>
+          <p className="body-text" style={{ marginTop: 12 }}>
+            Manage class-wise schedules, teacher period allocations, lab availability, and break times. Automatically detect and eliminate teacher or room clashes across the entire campus.
+          </p>
+          <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <div className="floating-tour-dot" />
+            <span>● PLAYABLE DEMO — Switch views and try the Smart Generator clash detector</span>
+          </div>
+        </div>
+        <div className="hide-on-mobile">
+          <TimetablePreview isTourActive={tourStep === 8} />
+        </div>
+      </section>
+
       {/* 19B. REPORTS CENTER */}
       <section id="reports" className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
         <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
@@ -918,7 +941,7 @@ export default function Home() {
           </div>
         </div>
         <div className="hide-on-mobile">
-          <ReportsPreview isTourActive={tourStep === 8} />
+          <ReportsPreview isTourActive={tourStep === 9} />
         </div>
         <div className="show-on-mobile-only" style={{ textAlign: 'center', padding: '20px', background: 'var(--surface-hover)', borderRadius: '8px', border: '1px solid var(--border)' }}>
           <strong style={{ fontSize: '13px', display: 'block', marginBottom: 4 }}>Structured School Reports</strong>
@@ -961,8 +984,27 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 19C. BRING YOUR EXISTING SCHOOL DATA */}
+      <section id="data-migration" className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
+        <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
+          <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>08C / DATA MIGRATION</span>
+          <h2 className="section-title" style={{ marginTop: 8 }}>Bring Your Existing School Data.</h2>
+          <h4 style={{ fontSize: '18px', color: 'var(--accent)', marginTop: 8, fontWeight: 700 }}>Moving from your old system? Bring your history with you.</h4>
+          <p className="body-text" style={{ marginTop: 12 }}>
+            Import existing student records, previous academic years, historical class history, and parent records smoothly via Excel. Preserves up to 5–10 years of school history with pre-import validation checks.
+          </p>
+          <div className="hide-on-mobile" style={{ fontSize: '11px', fontWeight: 700, color: 'var(--accent)', marginTop: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+            <div className="floating-tour-dot" />
+            <span>● PLAYABLE DEMO — Try the pre-import validation and inspect migration statistics</span>
+          </div>
+        </div>
+        <div className="hide-on-mobile">
+          <DataMigrationPreview isTourActive={tourStep === 10} />
+        </div>
+      </section>
+
       {/* 20. BUILT AROUND YOUR SCHOOL */}
-      <section id="configuration" className="container">
+      <section id="configuration" className="container" style={{ borderTop: '1px solid var(--border)', paddingTop: 80 }}>
         <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 40px auto' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>09 / CUSTOMIZATION</span>
           <h2 className="section-title" style={{ marginTop: 8 }}>Built Around Your School</h2>
@@ -997,7 +1039,7 @@ export default function Home() {
             <div className="floating-tour-dot" />
             <span>● PLAYABLE DEMO — Click custom fields below to watch them slide dynamically into your school's form template</span>
           </div>
-          <MetadataBuilder isTourActive={tourStep === 9} />
+          <MetadataBuilder isTourActive={tourStep === 11} />
         </div>
       </section>
 
